@@ -1,1 +1,1 @@
-Function that checks for uppercase character.
+Function that prints the numbers, from 0 to 9, followed by a new line
