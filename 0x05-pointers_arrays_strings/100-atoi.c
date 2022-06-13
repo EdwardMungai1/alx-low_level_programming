@@ -1,54 +1,35 @@
 #include "main.h"
 
 /**
- * print_times_table - prints the times table
- * @n: integer for which the times table will be printed
- *
- * Description: prints the times table
- *
- * Return: void
+ * _atoi - converts a string to an integer.
+ * @s: input string.
+ * Return: integer.
  */
-
-void print_times_table(int n)
+int _atoi(char *s)
 {
-	int row, column, product;
+	unsigned int count = 0, size = 0, oi = 0, pn = 1, m = 1, i;
 
-	if (n >= 0 && n < 15)
+	while (*(s + count) != '\0')
 	{
-		for (row = 0; row <= n; row++)
-		{
-			for (column = 0; column <= n; column++)
-			{
-				product = row * column;
+		if (size > 0 && (*(s + count) < '0' || *(s + count) > '9'))
+			break;
 
-				if (column == 0)
-					_putchar('0');
-				else if (product < 10)
-				{
-					_putchar(',');
-					_putchar(' ');
-					_putchar(' ');
-					_putchar(' ');
-					_putchar(product % 10 + '0');
-				}
-				else if (product >= 10 && product < 100)
-				{
-					_putchar(',');
-					_putchar(' ');
-					_putchar(' ');
-					_putchar((product / 10) % 10 + '0');
-					_putchar(product % 10 + '0');
-				}
-				else if (product > 99 && product < 1000)
-				{
-					_putchar(',');
-					_putchar(' ');
-					_putchar(product / 100 + '0');
-					_putchar((product / 10) % 10 + '0');
-					_putchar(product % 10 + '0');
-				}
-			}
-			_putchar('\n');
+		if (*(s + count) == '-')
+			pn *= -1;
+
+		if ((*(s + count) >= '0') && (*(s + count) <= '9'))
+		{
+			if (size > 0)
+				m *= 10;
+			size++;
 		}
+		count++;
 	}
+
+	for (i = count - size; i < count; i++)
+	{
+		oi = oi + ((*(s + i) - 48) * m);
+		m /= 10;
+	}
+	return (oi * pn);
 }
